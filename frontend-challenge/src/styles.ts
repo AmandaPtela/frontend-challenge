@@ -80,9 +80,18 @@ export const Bar = styled.p `
 export const DisplayFilters = styled.div `
   width: 80%;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
 
 `
+
+export const DisplayFiltersBtn = styled.div `
+  width: 180px;
+  display: flex;
+  justify-content: space-between;
+
+`
+
 export const Filter = styled.button`
   width: 83px;
   height: 33px;
@@ -91,6 +100,7 @@ export const Filter = styled.button`
   background-color: #FFFFFF;
   color: #848484
 `
+
 export const FilterInput = styled.input`
   background-color: #FFFFFF;
   border: solid 1px #DBDBDB;
@@ -101,4 +111,5 @@ export const FilterInput = styled.input`
   letter-spacing: 0px;
   font: normal normal normal;
   padding-left: 10px;
+  outline: none;
 `
