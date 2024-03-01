@@ -1,6 +1,7 @@
 import Filters from "./components/Filters";
 import Header from "./components/Header";
 import ProgressBar from "./components/ProgressBar";
+import Tarefas from "./components/Tarefas";
 
 import { Container } from './styles'
 
@@ -11,17 +12,7 @@ function App() {
       <ProgressBar />
       <Filters />
       <Container>
-        <input type="text" placeholder="Add new item" />
-        <button>+</button>
-        <table>
-          <thead>Tarefas</thead>
-          <tbody>
-            <td>tarefas</td>
-            <td>ações</td>
-            <tr>tarefa1</tr>
-            <tr>tarefa2</tr>
-          </tbody>
-        </table>
+        <Tarefas />
       </Container>
     </Container>
   )
