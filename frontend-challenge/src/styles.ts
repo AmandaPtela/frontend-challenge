@@ -17,7 +17,7 @@ export const Logo = styled.img`
 
 export const Calendar = styled.header`
   width: 80%;
-  height: fit-content;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,13 +72,14 @@ export const DisplayWeekDay = styled.span `
   font-weight: 400;
 `
 
-export const Bar = styled.p `
+export const Bar = styled.span `
   width: 80%;
   background-color: #E4E4E4;
 `
 
 export const DisplayFilters = styled.div `
   width: 80%;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -112,4 +113,39 @@ export const FilterInput = styled.input`
   font: normal normal normal;
   padding-left: 10px;
   outline: none;
+`
+
+export const DisplayTarefas = styled.div`
+  width: 80%;
+`
+
+export const InputAdd = styled.input`
+background-color: #FFFFFF;
+border: solid 1px #DBDBDB;
+border-radius: 4px;
+width: 94%;
+height: 48px;
+font-size: 14px;
+letter-spacing: 0px;
+font: normal normal normal;
+padding-left: 10px;
+outline: none;
+`
+
+export const Table = styled.table`
+  width: 100%;
+`
+
+export const TBody = styled.tbody`
+  background-color: #F4F4F4;
+  border: solid 1px #DBDBDB;
+  height: 48px;
+  font-size: 14px;
+  letter-spacing: 0px;
+  font: normal normal normal;
+  padding-left: 10px;
+  outline: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
 `
