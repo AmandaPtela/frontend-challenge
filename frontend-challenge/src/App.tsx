@@ -10,9 +10,7 @@ function App() {
     <Container>
       <Header />
       <ProgressBar />
-      implementar
       <Filters />
-      implementar
       <Container>
         <Tarefas />
       </Container>
