@@ -102,7 +102,8 @@ export const Filter = styled.button`
   color: #848484;
 
   ${(props) => props.className?.includes("active") && `
-  border: solid 0.1ch green;
+  border: solid 0.1ch #4DA6B3;
+  color: #4DA6B3;
 `}
 `
 
