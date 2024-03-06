@@ -3,10 +3,9 @@ import { Context } from '../Context/Context';
 import { DisplayFiltersBtn, DisplayFilters, Filter, FilterInput } from "../styles";
 
 export default function Filters() {
-    /* IMPLEMENTAR LÓGICA */
     let [active, setActive] = useState("");
     const values = useContext(Context)
-    console.log(values);
+
     return (
         <DisplayFilters>
             <DisplayFiltersBtn>
@@ -18,8 +17,8 @@ export default function Filters() {
                     }}
                     className={active === "done-active" ? active : "done"}
                 >
-                    done
-                </Filter> {/* Se ativo, borda verde */}
+                    Done
+                </Filter>
                 <Filter
                     name="pending"
                     onClick={(e) => {
@@ -28,7 +27,7 @@ export default function Filters() {
                     }}
                     className={active === "pend-active" ? active : "pend"}
                 >
-                    pending
+                    Pending
                 </Filter>
             </DisplayFiltersBtn>
             <FilterInput
