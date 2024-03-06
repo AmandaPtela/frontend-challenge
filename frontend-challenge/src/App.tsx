@@ -1,7 +1,7 @@
-import Filters from "./components/Filters";
-import Header from "./components/Header";
-import ProgressBar from "./components/ProgressBar";
-import Tarefas from "./components/Tarefas";
+import Filters from "./Components/Filters";
+import Header from "./Components/Header";
+import ProgressBar from "./Components/ProgressBar";
+import Tarefas from "./Components/Tarefas";
 
 import { Container } from './styles'
 
@@ -10,7 +10,9 @@ function App() {
     <Container>
       <Header />
       <ProgressBar />
+      implementar
       <Filters />
+      implementar
       <Container>
         <Tarefas />
       </Container>
