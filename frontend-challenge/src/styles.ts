@@ -99,7 +99,11 @@ export const Filter = styled.button`
   border: solid 1px #DBDBDB;
   border-radius: 20px;
   background-color: #FFFFFF;
-  color: #848484
+  color: #848484;
+
+  ${(props) => props.className?.includes("active") && `
+  border: solid 0.1ch green;
+`}
 `
 
 export const FilterInput = styled.input`
