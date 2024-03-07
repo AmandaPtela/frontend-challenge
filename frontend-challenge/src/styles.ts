@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import doneImg from "./Assets/done-icon.png";
+import undoImg from "./Assets/undo-icon.png";
+import deleteImg from "./Assets/delete-icon.png";
 
 export const Container = styled.main`
   height: 100vh;
@@ -26,7 +29,7 @@ export const Calendar = styled.header`
   color: #848484;
   `
 
-export const DisplayDate = styled.div `
+export const DisplayDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -34,22 +37,22 @@ export const DisplayDate = styled.div `
   max-width: 145px;
   min-width: 140px;
 `
-  
-export const DisplayDay = styled.h1 `
+
+export const DisplayDay = styled.h1`
   width: 68px;
   letter-spacing: 0px;
   font: normal normal 60px;
   font-weight: 400;
 `
 
-export const DateInfo = styled.div `
+export const DateInfo = styled.div`
   line-height: 25px;
   display: flex;
   flex-direction: column;
   align-items: start;
 `
 
-export const DisplayDateMonth = styled.span `
+export const DisplayDateMonth = styled.span`
   width: 32px;
   font-size: 24px;
   letter-spacing: 0px;
@@ -57,7 +60,7 @@ export const DisplayDateMonth = styled.span `
   font-weight: 300;
 `
 
-export const DisplayDateYear = styled.span `
+export const DisplayDateYear = styled.span`
   width: 53px;
   font-size: 24px;
   letter-spacing: 0px;
@@ -65,19 +68,19 @@ export const DisplayDateYear = styled.span `
   font-weight: 100;
 `
 
-export const DisplayWeekDay = styled.span `
+export const DisplayWeekDay = styled.span`
   font-size: 24px;
   letter-spacing: 0px;
   font: normal normal normal;
   font-weight: 400;
 `
 
-export const Bar = styled.span `
+export const Bar = styled.span`
   width: 80%;
   background-color: #E4E4E4;
 `
 
-export const DisplayFilters = styled.div `
+export const DisplayFilters = styled.div`
   width: 80%;
   height: 150px;
   display: flex;
@@ -86,7 +89,7 @@ export const DisplayFilters = styled.div `
 
 `
 
-export const DisplayFiltersBtn = styled.div `
+export const DisplayFiltersBtn = styled.div`
   width: 180px;
   display: flex;
   justify-content: space-between;
@@ -147,10 +150,56 @@ export const TBody = styled.tbody`
   height: 48px;
   font-size: 14px;
   letter-spacing: 0px;
-  font: normal normal normal;
-  padding-left: 10px;
   outline: none;
   text-align: left;
-  display: flex;
   align-items: center;
+  color: #848484
 `
+
+export const TRow = styled.tr`
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F4F4F4;
+  border: solid 1px #DBDBDB;
+  align-items: center;
+  font: normal normal normal;
+  padding-left: 10px;
+  opacity: 80%;
+
+${(props) => props.id?.includes("done") && `
+  opacity: 60%;
+  border: solid 1px #5DE290;
+  color: #5DE290;
+`}
+`
+
+export const StyledImage = styled.div`
+    background-image: url(${undoImg});
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 25px;
+    opacity: 60%;
+    z-index: 2;
+  ${(props) => props.id === "delete-item" && `
+    background-image: url(${deleteImg});
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 60%;
+    height: 40px;
+    width: 25px;
+    z-index: 2;
+`}
+
+  ${(props) => props.id === "item-done" && `
+    background-image: url(${doneImg});
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 60%;
+    height: 40px;
+    width: 25px;
+    z-index: 2;
+  `}
+`;
