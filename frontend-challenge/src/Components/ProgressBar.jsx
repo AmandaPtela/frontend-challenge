@@ -10,7 +10,8 @@ export default function ProgressBar() {
         backgroundColor: "#5DE290",
         width: `${percentage}%`,
         height: "30px",
-        margin: 0
+        margin: 0,
+        border: "none",
     }
     return (
         <Bar>
