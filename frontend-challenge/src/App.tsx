@@ -1,7 +1,7 @@
 import Filters from "./Components/Filters";
 import Header from "./Components/Header";
 import ProgressBar from "./Components/ProgressBar";
-import Tarefas from "./Components/Tarefas";
+import Tasks from "./Components/Tasks";
 
 import { Container } from './styles'
 
@@ -12,7 +12,7 @@ function App() {
       <ProgressBar />
       <Filters />
       <Container>
-        <Tarefas />
+        <Tasks />
       </Container>
     </Container>
   )
