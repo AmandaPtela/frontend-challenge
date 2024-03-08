@@ -81,19 +81,53 @@ export const Bar = styled.span`
 `
 
 export const DisplayFilters = styled.div`
-  width: 80%;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @media (min-width: 890px) {
+    width: 80%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
+  @media (max-width: 890px) {
+    width: 80%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+  }
 `
 
 export const DisplayFiltersBtn = styled.div`
+  min-width: 250px;
+  max-width: 280px;
   width: 180px;
   display: flex;
   justify-content: space-between;
 
+  @media (min-width: 550px) {
+    justify-content: space-evenly;
+    min-width: 250px;
+    max-width: 280px;
+    width: 100%;
+  }
+
+  @media (min-width: 550px) and (max-width: 890px) {
+    align-self: flex-end;
+    justify-content: space-evenly;
+    min-width: 250px;
+    max-width: 280px;
+    width: 55%;
+  }
+
+  @media (min-width: 890px) {
+    justify-content: space-evenly;
+    min-width: 250px;
+    max-width: 280px;
+    width: 300px;
+  }
 `
 
 export const Filter = styled.button`
@@ -104,6 +138,10 @@ export const Filter = styled.button`
   background-color: #FFFFFF;
   color: #848484;
 
+  ${(props) => props.name === "all" && `
+  width: 70px;
+`}
+
   ${(props) => props.className?.includes("active") && `
   border: solid 0.1ch #4DA6B3;
   color: #4DA6B3;
@@ -111,16 +149,31 @@ export const Filter = styled.button`
 `
 
 export const FilterInput = styled.input`
-  background-color: #FFFFFF;
-  border: solid 1px #DBDBDB;
-  border-radius: 4px;
-  width: 450px;
-  height: 40px;
-  font-size: 14px;
-  letter-spacing: 0px;
-  font: normal normal normal;
-  padding-left: 10px;
-  outline: none;
+  @media (max-width: 890px) {
+    background-color: #FFFFFF;
+    border: solid 1px #DBDBDB;
+    border-radius: 4px;
+    width: 98%;
+    height: 40px;
+    font-size: 14px;
+    letter-spacing: 0px;
+    font: normal normal normal;
+    padding-left: 10px;
+    outline: none;
+  }
+
+  @media (min-width: 890px) {
+    background-color: #FFFFFF;
+    border: solid 1px #DBDBDB;
+    border-radius: 4px;
+    width: 70%;
+    height: 40px;
+    font-size: 14px;
+    letter-spacing: 0px;
+    font: normal normal normal;
+    padding-left: 10px;
+    outline: none;
+  }
 `
 
 export const DisplayTarefas = styled.div`
