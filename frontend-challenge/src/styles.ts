@@ -188,14 +188,13 @@ export const InputAdd = styled.input`
   background-color: #FFFFFF;
   border: solid 1px #DBDBDB;
   border-radius: 4px;
-  width: 78.5%;
+  width: 100%;
   height: 48px;
   font-size: 14px;
   letter-spacing: 0px;
   font: normal normal normal;
-  padding-left: 10px;
-  outline: none;
-  position: absolute;
+  padding-left: 15px;
+  outline: none
   z-index: 0;
 `
 
@@ -233,6 +232,7 @@ export const TRow = styled.tr`
 
 ${(props) => props.id?.includes("done") && `
   opacity: 60%;
+  border: solid 1px #5DE290;
   color: #5DE290;
 `}
 `
