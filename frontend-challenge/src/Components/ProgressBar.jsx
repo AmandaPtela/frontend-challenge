@@ -1,21 +1,34 @@
 import { useContext } from "react";
-import { Bar } from "../styles";
+import { DisplayProgressBar } from "../styles";
 import { Context } from "../Context/Context";
+import { keyframes } from "styled-components";
+import css from "@styled-system/css";
 
 export default function ProgressBar() {
 
     const { percentage } = useContext(Context);
 
+    const increase = keyframes`
+        from {
+            width: ${percentage - 10}% 
+        }
+        to {
+            ${percentage}%
+        }
+    
+    `
     const style = {
         backgroundColor: "#5DE290",
         width: `${percentage}%`,
         height: "30px",
         margin: 0,
         border: "none",
+        transition: "2s",
+        animation: css`${increase} 2s linear 1`
     }
     return (
-        <Bar>
+        <DisplayProgressBar>
             < hr style={style} />
-        </Bar>
+        </DisplayProgressBar>
     )
 }
