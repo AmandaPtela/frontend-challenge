@@ -20,6 +20,7 @@ export default function ProgressBar() {
     const style = {
         backgroundColor: "#5DE290",
         width: `${percentage}%`,
+        maxWidth: "100%",
         height: "30px",
         margin: 0,
         border: "none",
