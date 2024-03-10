@@ -23,8 +23,8 @@ export default function ProgressBar() {
         height: "30px",
         margin: 0,
         border: "none",
-        transition: "2s",
-        animation: css`${increase} 2s linear 1`
+        transition: "1.5s",
+        animation: css`${increase} 1.5s linear 1`
     }
     return (
         <DisplayProgressBar>
