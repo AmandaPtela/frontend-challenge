@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import doneImg from "./Assets/done-icon.png";
 import undoImg from "./Assets/undo-icon.png";
-import deleteImg from "./Assets/delete-icon.png";
+import deleteImg from "./Assets/trash-icon.png";
 
 export const Container = styled.main`
   height: 100vh;
@@ -91,7 +91,7 @@ export const DisplayFilters = styled.div`
 
   @media (max-width: 890px) {
     width: 80%;
-    height: 150px;
+    height: 115px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -177,36 +177,46 @@ export const FilterInput = styled.input`
 `
 
 export const DisplayTarefas = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 300px;
   width: 80%;
 `
 
 export const InputAdd = styled.input`
-background-color: #FFFFFF;
-border: solid 1px #DBDBDB;
-border-radius: 4px;
-width: 94%;
-height: 48px;
-font-size: 14px;
-letter-spacing: 0px;
-font: normal normal normal;
-padding-left: 10px;
-outline: none;
-`
-
-export const Table = styled.table`
-  width: 100%;
-`
-
-export const TBody = styled.tbody`
-  background-color: #F4F4F4;
+  background-color: #FFFFFF;
   border: solid 1px #DBDBDB;
+  border-radius: 4px;
+  width: 78.5%;
   height: 48px;
   font-size: 14px;
   letter-spacing: 0px;
+  font: normal normal normal;
+  padding-left: 10px;
+  outline: none;
+  position: absolute;
+  z-index: 0;
+`
+
+export const Table = styled.table`
+    margin-top: 10px;
+    height: 95%;
+    width: 100%;
+`
+
+export const TBody = styled.tbody`
+  height: 230px;
+  font-size: 14px;
+  letter-spacing: 0px;
+  overflow-y: scroll;
   outline: none;
   text-align: left;
-  align-items: center;
-  color: #848484
+  color: #848484;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
 `
 
 export const TRow = styled.tr`
@@ -218,11 +228,11 @@ export const TRow = styled.tr`
   align-items: center;
   font: normal normal normal;
   padding-left: 10px;
-  opacity: 80%;
+  opacity: 100%;
+  margin: 3px 0 3px 0;
 
 ${(props) => props.id?.includes("done") && `
   opacity: 60%;
-  border: solid 1px #5DE290;
   color: #5DE290;
 `}
 `
@@ -240,7 +250,7 @@ export const StyledImage = styled.div`
     background-image: url(${deleteImg});
     background-size: 100%;
     background-repeat: no-repeat;
-    opacity: 60%;
+    opacity: 100%;
     height: 40px;
     width: 25px;
     z-index: 2;
