@@ -75,7 +75,7 @@ export const DisplayWeekDay = styled.span`
   font-weight: 400;
 `
 
-export const Bar = styled.span`
+export const DisplayProgressBar = styled.div`
   width: 80%;
   background-color: #E4E4E4;
 `
@@ -255,4 +255,4 @@ export const StyledImage = styled.div`
     width: 25px;
     z-index: 2;
   `}
-`;
+`
