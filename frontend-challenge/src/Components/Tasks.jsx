@@ -9,7 +9,7 @@ export default function Tarefas() {
         value: "",
         status: "Pending"
     }
-    const { items, setItem, filtered, setFiltered, setDoneTasks, setPercentage, percentage } = useContext(Context);
+    const { items, setItem, filtered, setFiltered, setDoneTasks, setPercentage } = useContext(Context);
     let [newItem, setNewItem] = useState("");
     let [done, setDone] = useState(true);
 
