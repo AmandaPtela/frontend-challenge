@@ -11,9 +11,7 @@ function App() {
       <Header />
       <ProgressBar />
       <Filters />
-      <Container>
-        <Tasks />
-      </Container>
+      <Tasks />
     </Container>
   )
 }
