@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Table, DisplayTarefas, InputAdd, TBody, TRow, StyledImage } from "../styles";
 import { Context } from "../Context/Context";
+import addTask from "../Assets/add-task.png";
 
 export default function Tarefas() {
 
@@ -8,7 +9,7 @@ export default function Tarefas() {
         value: "",
         status: "Pending"
     }
-    const { items, setItem, filtered, setFiltered, setDoneTasks, setPercentage } = useContext(Context);
+    const { items, setItem, filtered, setFiltered, setDoneTasks, setPercentage, percentage } = useContext(Context);
     let [newItem, setNewItem] = useState("");
     let [done, setDone] = useState(true);
 
@@ -34,23 +35,24 @@ export default function Tarefas() {
                         <th style={{ textDecoration: "line-through", zIndex: 0 }}>{item.value}</th>
                     </tr>
                     <tr>
-                        <td>
+                        <td style={{ display: "flex"}}>
                             <button
                                 onClick={() => {
                                     setDone(!done);
                                     item.status = done ? "Done" : "Pending";
                                     setDoneTasks(items.filter((tarefa) => tarefa.status !== "Pending"));
-                                    setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10)
+                                    setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10);
                                 }}
-                                style={{ border: "none", outline: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
-                                >
-                                    <StyledImage id="return-item" alt="return-item" height="30px" />
-                                </button>
+                                style={{ fontSize: "12px", fontFamily: "inherit", color: "#FA5252", opacity: "100%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
+                            >Undo task
+                            </button>
                             <button
                                 onClick={() => {
                                     deleteItem(item.value);
+                                    setDoneTasks(items.filter((tarefa) => tarefa.value !== item.value));
+                                    setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10);
                                 }}
-                                style={{ border: "none", outline: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
+                                style={{ border: "none", outline: "none", backgroundColor: "transparent", opacity: "100%", cursor: "pointer", zIndex: 2 }}
                             >
                                 <StyledImage id="delete-item" alt="delete-item" height="30px" />
                             </button>
@@ -64,21 +66,21 @@ export default function Tarefas() {
         return (
             <TRow key={index} id={`${index}-pending`} >
                 <tr>
-                    <th style={{zIndex: 0}}>{item.value}</th>
+                    <th style={{ zIndex: 0 }}>{item.value}</th>
                 </tr>
                 <tr>
-                    <td>
+                <td style={{ display: "flex" }}>
 
                         <button
                             onClick={() => {
                                 setDone(!done);
                                 item.status = done ? "Done" : "Pending";
                                 setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
-                                setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10)
+                                setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10);
                             }}
-                            style={{ border: "none", outline: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
-                        >
-                            <StyledImage id="item-done" alt="item-done" height="30px" />
+                            style={{ fontSize: "12px", fontFamily: "inherit", color: "inherit", opacity: "70%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
+                        >   
+                            Mark as Done
                         </button>
                         <button
                             onClick={() => {
@@ -96,28 +98,24 @@ export default function Tarefas() {
 
     return (
         <DisplayTarefas>
-            <div id="newItemArea" style={{ display: "flex", alignItems: "center" }}>
+            <div id="newItemArea" style={{ display: "flex", flexDirection: "row-reverse", alignItems: "center" }}>
                 <InputAdd type="text" onChange={({ target }) => setNewItem(target.value)} value={newItem} placeholder="Add new item" />
-                <button style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "47px", height: "50px", border: "none", backgroundColor: "#4DA6B3" }}
+                <button
+                    style={{
+                        width: "49px",
+                        height: "50px",
+                        border: "none",
+                        borderRadius: "0 4px 4px 0",
+                        backgroundImage: `url(${addTask})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        zIndex: 1,
+                    }}
                     onClick={() => {
                         createNewItem(newItem);
                         setNewItem("")
                     }}
                 >
-                    <span
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            borderRadius: "50%",
-                            width: "20px",
-                            height: "20px",
-                            backgroundColor: "white",
-                            fontWeight: "500",
-                            color: "#4DA6B3",
-                        }}>
-                        +
-                    </span>
                 </button>
             </div>
             <Table>
