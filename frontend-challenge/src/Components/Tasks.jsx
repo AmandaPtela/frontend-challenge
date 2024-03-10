@@ -98,12 +98,21 @@ export default function Tarefas() {
 
     return (
         <DisplayTarefas>
-            <div id="newItemArea" style={{ display: "flex", flexDirection: "row-reverse", alignItems: "center" }}>
+            <div
+                id="newItemArea"
+                style={{
+                    display: "flex",
+                    width: "100%",
+                    flexDirection: "row",
+                    alignItems: "center"
+                }}>
                 <InputAdd type="text" onChange={({ target }) => setNewItem(target.value)} value={newItem} placeholder="Add new item" />
                 <button
                     style={{
-                        width: "49px",
-                        height: "50px",
+                        maxHeight: "51px",
+                        maxWidth: "52px",
+                        width: window.innerWidth < 500 ? "60px" :  "10%",
+                        height: window.innerWidth < 500 ? "50px" :  "100%",
                         border: "none",
                         borderRadius: "0 4px 4px 0",
                         backgroundImage: `url(${addTask})`,
