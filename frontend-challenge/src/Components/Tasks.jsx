@@ -43,7 +43,7 @@ export default function Tarefas() {
                                     setDoneTasks(items.filter((tarefa) => tarefa.status !== "Pending"));
                                     setPercentage(doneTasks.length);
                                 }}
-                                style={{ fontSize: "12px", fontFamily: "inherit", color: "#FA5252", opacity: "100%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
+                                style={{ fontSize: "13px", fontFamily: "inherit", color: "#FA5252", opacity: "100%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
                             >Undo task
                             </button>
                             <button
@@ -77,7 +77,7 @@ export default function Tarefas() {
                                 setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
                                 setPercentage(doneTasks.length);
                             }}
-                            style={{ fontSize: "12px", fontFamily: "inherit", color: "inherit", opacity: "70%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
+                            style={{ fontSize: "13px", fontFamily: "inherit", color: "inherit", opacity: "70%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
                         >
                             Mark as Done
                         </button>
@@ -120,6 +120,7 @@ export default function Tarefas() {
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
                         zIndex: 1,
+                        cursor: "pointer"
                     }}
                     onClick={() => {
                         createNewItem(newItem);
