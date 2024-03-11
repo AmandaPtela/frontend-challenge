@@ -48,8 +48,8 @@ export default function Tarefas() {
                             </button>
                             <button
                                 onClick={() => {
+                                    setDoneTasks(items.filter((tarefa) => tarefa.value !== item.value && tarefa.status !== "Pending"));
                                     deleteItem(item.value);
-                                    setDoneTasks(items.filter((tarefa) => tarefa.value !== item.value));
                                     setPercentage(doneTasks.length);
                                 }}
                                 style={{ border: "none", outline: "none", backgroundColor: "transparent", opacity: "100%", cursor: "pointer", zIndex: 2 }}
@@ -83,7 +83,9 @@ export default function Tarefas() {
                         </button>
                         <button
                             onClick={() => {
+                                setDoneTasks(items.filter((tarefa) => tarefa.value !== item.value && tarefa.status !== "Pending"));
                                 deleteItem(item.value);
+                                setPercentage(doneTasks.length);
                             }}
                             style={{ border: "none", outline: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
                         >
