@@ -149,6 +149,7 @@ export const Filter = styled.button`
 `
 
 export const FilterInput = styled.input`
+  outline: none;
   @media (max-width: 890px) {
     background-color: #FFFFFF;
     border: solid 1px #DBDBDB;
@@ -194,7 +195,7 @@ export const InputAdd = styled.input`
   letter-spacing: 0px;
   font: normal normal normal;
   padding-left: 15px;
-  outline: none
+  outline: none;
   z-index: 0;
 `
 
