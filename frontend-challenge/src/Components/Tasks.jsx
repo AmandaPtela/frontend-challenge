@@ -9,7 +9,7 @@ export default function Tarefas() {
         value: "",
         status: "Pending"
     }
-    const { items, setItem, filtered, setFiltered, setDoneTasks, setPercentage } = useContext(Context);
+    const { items, setItem, filtered, setFiltered, setDoneTasks, doneTasks, setPercentage } = useContext(Context);
     let [newItem, setNewItem] = useState("");
     let [done, setDone] = useState(true);
 
@@ -35,13 +35,13 @@ export default function Tarefas() {
                         <th style={{ textDecoration: "line-through", zIndex: 0 }}>{item.value}</th>
                     </tr>
                     <tr>
-                        <td style={{ display: "flex"}}>
+                        <td style={{ display: "flex" }}>
                             <button
                                 onClick={() => {
                                     setDone(!done);
                                     item.status = done ? "Done" : "Pending";
                                     setDoneTasks(items.filter((tarefa) => tarefa.status !== "Pending"));
-                                    setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10);
+                                    setPercentage(doneTasks.length);
                                 }}
                                 style={{ fontSize: "12px", fontFamily: "inherit", color: "#FA5252", opacity: "100%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
                             >Undo task
@@ -50,7 +50,7 @@ export default function Tarefas() {
                                 onClick={() => {
                                     deleteItem(item.value);
                                     setDoneTasks(items.filter((tarefa) => tarefa.value !== item.value));
-                                    setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10);
+                                    setPercentage(doneTasks.length);
                                 }}
                                 style={{ border: "none", outline: "none", backgroundColor: "transparent", opacity: "100%", cursor: "pointer", zIndex: 2 }}
                             >
@@ -69,17 +69,16 @@ export default function Tarefas() {
                     <th style={{ zIndex: 0 }}>{item.value}</th>
                 </tr>
                 <tr>
-                <td style={{ display: "flex" }}>
-
+                    <td style={{ display: "flex" }}>
                         <button
                             onClick={() => {
                                 setDone(!done);
                                 item.status = done ? "Done" : "Pending";
                                 setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
-                                setPercentage(items.filter((tarefas) => tarefas.status === "Done").length * 10);
+                                setPercentage(doneTasks.length);
                             }}
                             style={{ fontSize: "12px", fontFamily: "inherit", color: "inherit", opacity: "70%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
-                        >   
+                        >
                             Mark as Done
                         </button>
                         <button
@@ -111,8 +110,8 @@ export default function Tarefas() {
                     style={{
                         maxHeight: "51px",
                         maxWidth: "52px",
-                        width: window.innerWidth < 500 ? "60px" :  "10%",
-                        height: window.innerWidth < 500 ? "50px" :  "100%",
+                        width: window.innerWidth < 500 ? "60px" : "10%",
+                        height: window.innerWidth < 500 ? "50px" : "100%",
                         border: "none",
                         borderRadius: "0 4px 4px 0",
                         backgroundImage: `url(${addTask})`,
