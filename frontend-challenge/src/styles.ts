@@ -149,7 +149,6 @@ export const Filter = styled.button`
 `
 
 export const FilterInput = styled.input`
-  outline: none;
   @media (max-width: 890px) {
     background-color: #FFFFFF;
     border: solid 1px #DBDBDB;
@@ -161,6 +160,7 @@ export const FilterInput = styled.input`
     font: normal normal normal;
     padding-left: 10px;
     outline: none;
+    color: #848484;
   }
 
   @media (min-width: 890px) {
@@ -174,6 +174,7 @@ export const FilterInput = styled.input`
     font: normal normal normal;
     padding-left: 10px;
     outline: none;
+    color: #848484;
   }
 `
 
@@ -197,6 +198,7 @@ export const InputAdd = styled.input`
   padding-left: 15px;
   outline: none;
   z-index: 0;
+  color: #848484;
 `
 
 export const Table = styled.table`
