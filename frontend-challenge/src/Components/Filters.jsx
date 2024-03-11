@@ -5,16 +5,20 @@ import { DisplayFiltersBtn, DisplayFilters, Filter, FilterInput } from "../style
 export default function Filters() {
     let [active, setActive] = useState("");
     const values = useContext(Context);
-    const { items, setFiltered, setFilter, setDoneTasks } = values;
+    const { items, setFiltered, setFilter, filter, setDoneTasks } = values;
 
-    function filterItems(filter) {
-        if (filter === 'done') {
+    function filterItems(filterArea = 'all') {
+        if (filterArea === 'done') {
             setDoneTasks(items.filter((tarefa) => tarefa.status === "Done"));
             return setFiltered(items.filter((tarefa) => tarefa.status === "Done"));
         }
-        if (filter === 'pend') {
+        if (filterArea === 'pend') {
             return setFiltered(items.filter((tarefa) => tarefa.status === "Pending"));
         }
+        if (filter.length > 2 && filterArea === 'text-filter') {
+            return setFiltered(items.filter((tarefa) => tarefa.value.includes(filter)));
+        }
+        filterArea = 'all'
         return setFiltered(items);
     }
 
