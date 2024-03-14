@@ -78,7 +78,8 @@ export default function Tarefas() {
         newItem = { value: create, status: initialItem.status };
 
         listItems.push(newItem);
-        return setItem(listItems);
+        setItem(listItems);
+        return setPercentage(doneTasks.length);
     };
 
     const deleteItem = (item) => {
