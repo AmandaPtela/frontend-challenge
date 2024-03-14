@@ -172,6 +172,7 @@ export default function Tarefas() {
                 style={styleNewItemArea}>
                 <InputAdd
                     type="text"
+                    maxLength={67}
                     onChange={({ target }) => setNewItem(target.value)}
                     value={newItem} placeholder="Add new item" />
                 <button
