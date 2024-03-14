@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DisplayProgressBar } from "../styles";
+import { DisplayProgressBar } from "../Styles/globalStyles";
 import { Context } from "../Context/Context";
 import { keyframes } from "styled-components";
 import css from "@styled-system/css";

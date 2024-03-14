@@ -3,7 +3,7 @@ import Header from "./Components/Header";
 import ProgressBar from "./Components/ProgressBar";
 import Tasks from "./Components/Tasks";
 
-import { Container } from './styles'
+import { Container } from './Styles/globalStyles'
 
 function App() {
   return (

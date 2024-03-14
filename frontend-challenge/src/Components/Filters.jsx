@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Context } from '../Context/Context';
-import { DisplayFiltersBtn, DisplayFilters, Filter, FilterInput } from "../styles";
+import { DisplayFiltersBtn, DisplayFilters, Filter, FilterInput } from "../Styles/Filters";
 
 export default function Filters() {
     let [active, setActive] = useState("");

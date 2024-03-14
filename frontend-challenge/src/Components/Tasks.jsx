@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, DisplayTarefas, InputAdd, TBody, TRow, StyledImage } from "../styles";
+import { Table, DisplayTarefas, InputAdd, TBody, TRow, StyledImage } from "../Styles/Tasks";
 import { Context } from "../Context/Context";
 import addTask from "../Assets/add-task.png";
 
@@ -40,11 +40,12 @@ export default function Tarefas() {
                                 onClick={() => {
                                     setDone(!done);
                                     item.status = done ? "Done" : "Pending";
-                                    setDoneTasks(items.filter((tarefa) => tarefa.status !== "Pending"));
+                                    setDoneTasks(items.filter(({ status }) => status !== "Pending"));
                                     setPercentage(doneTasks.length);
                                 }}
                                 style={{ fontSize: "13px", fontFamily: "inherit", color: "#FA5252", opacity: "100%", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 2 }}
-                            >Undo task
+                            > 
+                                Undo task
                             </button>
                             <button
                                 onClick={() => {

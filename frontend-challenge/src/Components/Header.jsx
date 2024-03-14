@@ -1,4 +1,4 @@
-import { Calendar, DisplayDate, DisplayDateYear, DisplayDateMonth, DisplayDay, DateInfo, DisplayWeekDay } from "../styles";
+import { Calendar, DisplayDate, DisplayDateYear, DisplayDateMonth, DisplayDay, DateInfo, DisplayWeekDay } from "../Styles/Header";
 
 export default function Header() {
     const now = new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" }).split("/");
