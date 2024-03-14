@@ -16,6 +16,7 @@ export default function Header() {
     
     const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
     return (
         <Calendar>
             <DisplayDate>
