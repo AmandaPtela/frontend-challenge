@@ -38,6 +38,7 @@ export const TBody = styled.tbody`
     justify-content: flex-start;
     color: #848484;
     font-size: 14px;
+    font-weight: 600;
     letter-spacing: 0px;
     text-align: left;
     outline: none;
