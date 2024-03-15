@@ -32,12 +32,12 @@ export default function Tarefas() {
     };
 
     const styleUndoTask = {
-        fontSize: "13px",
-        fontFamily: "inherit",
+        backgroundColor: "transparent",
         color: "#FA5252",
         opacity: "100%",
+        fontSize: "14px",
+        fontWeight: "400",
         border: "none",
-        backgroundColor: "transparent",
         cursor: "pointer",
         zIndex: 2
     }
@@ -45,15 +45,16 @@ export default function Tarefas() {
     const styleSetDoneButton = {
         backgroundColor: "transparent",
         color: "inherit",
-        opacity: "70%",
+        opacity: "80%",
+        fontSize: "14px",
+        fontWeight: "400",
         border: "none",
-        fontSize: "13px",
-        fontFamily: "inherit",
         cursor: "pointer",
         zIndex: 2
     }
 
     const styleActionButton = {
+        display: "flex",
         backgroundColor: "transparent",
         opacity: "100%",
         border: "none",
@@ -70,6 +71,7 @@ export default function Tarefas() {
     const { items, setItem, filtered, setFiltered, setDoneTasks, doneTasks, setPercentage } = useContext(Context);
     let [newItem, setNewItem] = useState("");
     let [done, setDone] = useState(true);
+    let [toEdit, setEdit] = useState(false);
 
     useEffect(() => setFiltered(items), [items, setFiltered]);
 
@@ -90,7 +92,7 @@ export default function Tarefas() {
     const renderItem = (item, index) => {
         if (item.status === "Done") {
             return (
-                <TRow key={index} id={`${index}-done`} >
+                <TRow key={index} id={`${index}-done`}>
                     <td style={styleDoneTask}>
                         {item.value}
                     </td>
@@ -129,38 +131,60 @@ export default function Tarefas() {
 
         return (
             <TRow key={index} id={`${index}-pending`} >
-                <td>
-                    {item.value}
-                </td>
-                <td style={{ display: "flex" }}>
-                    <button
-                        onClick={() => {
-                            setDone(!done);
-                            item.status = done ? "Done" : "Pending";
-                            setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
-                            setPercentage(doneTasks.length);
-                        }}
-                        style={styleSetDoneButton}
-                    >
-                        Mark as Done
-                    </button>
-                    <button
-                        onClick={() => {
-                            setDoneTasks(items.filter((tarefa) => (
-                                tarefa.value !== item.value && tarefa.status !== "Pending"))
-                            );
-                            deleteItem(item.value);
-                            setPercentage(doneTasks.length);
-                        }}
-                        style={styleActionButton}
-                    >
-                        <StyledImage
-                            id="delete-item"
-                            alt="delete-item"
-                            height="30px"
-                        />
-                    </button>
-                </td>
+
+                {/* RENDERIZAR DE ACORDO COM O ID DO SELECIONADO */}
+                {toEdit
+                    ? (
+                        <td style={{ display: "flex", width: "100%" }}>
+                            <InputAdd id="edit" maxLength={60} />
+                            <button
+                                onClick={({ target }) => {
+                                    setDone(!done);
+                                    item.value = target.value
+                                    setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
+                                    setPercentage(doneTasks.length);
+                                }}
+                                style={styleSetDoneButton}
+                            >
+                                edit
+                            </button>
+                        </td>)
+                    : (
+                        <>
+                            <td onClick={() => { setEdit(!toEdit) }} >
+                                {item.value}
+                            </td>
+                            <td style={{ display: "flex" }}>
+                                <button
+                                    onClick={() => {
+                                        setDone(!done);
+                                        item.status = done ? "Done" : "Pending";
+                                        setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
+                                        setPercentage(doneTasks.length);
+                                    }}
+                                    style={styleSetDoneButton}
+                                >
+                                    Mark as Done
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setDoneTasks(items.filter((tarefa) => (
+                                            tarefa.value !== item.value && tarefa.status !== "Pending"))
+                                        );
+                                        deleteItem(item.value);
+                                        setPercentage(doneTasks.length);
+                                    }}
+                                    style={styleActionButton}
+                                >
+                                    <StyledImage
+                                        id="delete-item"
+                                        alt="delete-item"
+                                        height="30px"
+                                    />
+                                </button>
+                            </td>
+                        </>
+                    )}
             </TRow>
         )
     }
