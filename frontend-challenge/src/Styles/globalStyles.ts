@@ -5,6 +5,8 @@ export const Container = styled.main`
   align-items: center;
   flex-direction: column;
   background-color: #FFFFFF;
+  color: #848484;
+  font-weight: 400;
   text-align: center;
   height: 100vh;
   width: 100vw;
