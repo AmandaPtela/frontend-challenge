@@ -21,38 +21,34 @@ export const DisplayDate = styled.div`
 `
 
 export const DisplayDay = styled.h1`
-    font: normal normal 60px;
-    font-weight: 400;
-    letter-spacing: 0px;
-    width: 68px;
+    font-size: 79px;
+    font-weight: 500;
+    letter-spacing: -5px;
+    width: 95px;
 `
 
 export const DateInfo = styled.div`
     display: flex;
     align-items: start;
     flex-direction: column;
-    line-height: 25px;
+    line-height: 32px;
+    letter-spacing: 0px;
 `
 
 export const DisplayDateMonth = styled.span`
-    font-size: 24px;
-    font: normal normal normal;
-    font-weight: 300;
-    letter-spacing: 0px;
+    font-size: 32px;
+    font-weight: 400;
     width: 32px;
 `
 
 export const DisplayDateYear = styled.span`
-    font-size: 24px;
-    font: normal normal normal;
-    font-weight: 100;
-    letter-spacing: 0px;
+    font-size: 32px;
+    font-weight: 300;
     width: 53px;
 `
 
 export const DisplayWeekDay = styled.span`
-    font-size: 24px;
-    font: normal normal normal;
+    font-size: 32px;
     font-weight: 400;
     letter-spacing: 0px;
 `
