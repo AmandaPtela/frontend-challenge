@@ -16,7 +16,7 @@ export const InputAdd = styled.input`
   color: #848484;
   border: solid 1px #DBDBDB;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 19px;
   font: normal normal normal;
   letter-spacing: 0px;
   padding-left: 15px;
@@ -24,23 +24,30 @@ export const InputAdd = styled.input`
   height: 48px;
   width: 100%;
   z-index: 0;
+  opacity: 1;
+
+  ${(props) => props.id === "edit" && `
+  background-color: transparent;
+  border: none;
+  width: 100%;
+`}
 `
 
 export const Table = styled.table`
-    margin-top: 10px;
-    height: 95%;
-    width: 100%;
+  margin-top: 10px;
+  color: #848484;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-align: left;
+  height: 95%;
+  width: 100%;
 `
 
 export const TBody = styled.tbody`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    color: #848484;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0px;
-    text-align: left;
     outline: none;
     height: 230px;
     width: 100%;
@@ -48,21 +55,22 @@ export const TBody = styled.tbody`
 `
 
 export const TRow = styled.tr`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #F4F4F4;
-    opacity: 100%;
-    border: solid 1px #DBDBDB;
-    font: normal normal normal;
-    padding-left: 10px;
-    margin: 3px 0 3px 0;
-    height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F4F4F4;
+  opacity: 100%;
+  border: solid 1px #DBDBDB;
+  padding-left: 10px;
+  margin: 3px 0 3px 0;
+  height: 48px;
+  cursor: pointer;
+  z-index: 0;
 
 ${(props) => props.id?.includes("done") && `
-    color: #5DE290;
-    opacity: 60%;
-    border: solid 1px #5DE290;
+  color: #5DE290;
+  opacity: 70%;
+  border: solid 1px #5DE290;
 `}
 `
 
