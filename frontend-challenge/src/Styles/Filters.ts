@@ -54,8 +54,10 @@ export const Filter = styled.button`
   color: #848484;
   border: solid 1px #DBDBDB;
   border-radius: 20px;
+  font-size: 19px;
+  font-weight: 400;
   height: 33px;
-  width: 83px;
+  width: 95px;
 
   ${(props) => props.name === "all" && `
   width: 70px;
@@ -73,8 +75,7 @@ export const FilterInput = styled.input`
     color: #848484;
     border: solid 1px #DBDBDB;
     border-radius: 4px;
-    font-size: 14px;
-    font: normal normal normal;
+    font-size: 19px;
     letter-spacing: 0px;
     padding-left: 10px;
     outline: none;
@@ -87,8 +88,7 @@ export const FilterInput = styled.input`
     color: #848484;
     border: solid 1px #DBDBDB;
     border-radius: 4px;
-    font-size: 14px;
-    font: normal normal normal;
+    font-size: 19px;
     letter-spacing: 0px;
     padding-left: 10px;
     outline: none;
