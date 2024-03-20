@@ -12,11 +12,6 @@ export const Container = styled.main`
   width: 100vw;
 `
 
-export const Logo = styled.img`
-  height: 5vmin;
-  pointer-events: none;
-`
-
 export const DisplayProgressBar = styled.div`
   background-color: #E4E4E4;
   width: 80%;
