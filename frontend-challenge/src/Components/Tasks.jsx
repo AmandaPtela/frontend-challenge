@@ -1,83 +1,27 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, DisplayTarefas, InputAdd, TBody, TRow, StyledImage } from "../Styles/Tasks";
+import { Table, DisplayTarefas, InputAdd, TBody, TRow, StyledImage, AddButton, ActionButton, NewTaskArea, TaskTitle } from "../Styles/Tasks";
 import { Context } from "../Context/Context";
-import addTask from "../Assets/add-task.png";
+import Info from "./Info";
 
 export default function Tarefas() {
 
-    const styleNewItemArea = {
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "row",
-        width: "100%",
-    }
-
-    const styleAddButton = {
-        backgroundImage: `url(${addTask})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        border: "none",
-        borderRadius: "0 4px 4px 0",
-        cursor: "pointer",
-        height: window.innerWidth < 500 ? "50px" : "100%",
-        maxHeight: "51px",
-        width: window.innerWidth < 500 ? "60px" : "10%",
-        maxWidth: "52px",
-        zIndex: 1,
-    }
-
-    const styleDoneTask = {
-        textDecoration: "line-through",
-        zIndex: 0
-    };
-
-    const styleUndoTask = {
-        backgroundColor: "transparent",
-        color: "#FA5252",
-        opacity: "100%",
-        fontSize: "14px",
-        fontWeight: "400",
-        border: "none",
-        cursor: "pointer",
-        zIndex: 2
-    }
-
-    const styleSetDoneButton = {
-        backgroundColor: "transparent",
-        color: "inherit",
-        opacity: "80%",
-        fontSize: "14px",
-        fontWeight: "400",
-        border: "none",
-        cursor: "pointer",
-        zIndex: 2
-    }
-
-    const styleActionButton = {
-        display: "flex",
-        backgroundColor: "transparent",
-        opacity: "100%",
-        border: "none",
-        outline: "none",
-        cursor: "pointer",
-        zIndex: 2
-    };
-
     const initialItem = {
         value: "",
-        status: "Pending"
+        status: "Pending",
+        edit: false
     };
 
     const { items, setItem, filtered, setFiltered, setDoneTasks, doneTasks, setPercentage } = useContext(Context);
     let [newItem, setNewItem] = useState("");
     let [done, setDone] = useState(true);
     let [toEdit, setEdit] = useState(false);
+    let [selected, setSelected] = useState();
 
     useEffect(() => setFiltered(items), [items, setFiltered]);
 
     const createNewItem = (create) => {
         const listItems = items;
-        newItem = { value: create, status: initialItem.status };
+        newItem = { value: create, status: initialItem.status, edit: initialItem.edit };
 
         listItems.push(newItem);
         setItem(listItems);
@@ -89,26 +33,42 @@ export default function Tarefas() {
         return setItem(newList);
     };
 
+    //PAREI
+    const infoText = () => {
+        console.log("em cima");
+        return(
+            <div
+                style={{ position: "absolute", height: "20px", top: "50%", left: "50%", backgroundColor: "red"}}
+            >
+                <span>Edit task</span>
+            </div>
+        )
+    }
+
     const renderItem = (item, index) => {
         if (item.status === "Done") {
             return (
                 <TRow key={index} id={`${index}-done`}>
-                    <td style={styleDoneTask}>
+                    <TaskTitle id={`${index}-done`} >
                         {item.value}
-                    </td>
+                    </TaskTitle>
                     <td style={{ display: "flex" }}>
-                        <button
+                        <ActionButton
+                            id="undo-button"
                             onClick={() => {
                                 setDone(!done);
                                 item.status = done ? "Done" : "Pending";
                                 setDoneTasks(items.filter(({ status }) => status !== "Pending"));
                                 setPercentage(doneTasks.length);
                             }}
-                            style={styleUndoTask}
                         >
-                            Undo task
-                        </button>
-                        <button
+                            {window.innerWidth > 500
+                                ? "Undo task"
+                                : <StyledImage id="undo-item" alt="undo-item-icon"  />
+                            }
+                        </ActionButton>
+                        <ActionButton
+                            id="delete-button"
                             onClick={() => {
                                 setDoneTasks(items.filter((tarefa) => (
                                     tarefa.value !== item.value && tarefa.status !== "Pending"))
@@ -116,57 +76,85 @@ export default function Tarefas() {
                                 deleteItem(item.value);
                                 setPercentage(doneTasks.length);
                             }}
-                            style={styleActionButton}
                         >
                             <StyledImage
                                 id="delete-item"
-                                alt="delete-item"
-                                height="30px"
+                                alt="delete-item-icon"
                             />
-                        </button>
+                        </ActionButton>
                     </td>
                 </TRow>
             )
         }
 
         return (
-            <TRow key={index} id={`${index}-pending`} >
+            <TRow
+                key={index}
+                id={`${index}-pending`}
+            >
 
                 {/* RENDERIZAR DE ACORDO COM O ID DO SELECIONADO */}
                 {toEdit
                     ? (
                         <td style={{ display: "flex", width: "100%" }}>
-                            <InputAdd id="edit" maxLength={60} />
-                            <button
-                                onClick={({ target }) => {
-                                    setDone(!done);
-                                    item.value = target.value
+                            <InputAdd id="edit" maxLength={60} onChange={({ target }) => item.value = target.value} />
+                            <ActionButton
+                                id="edit"
+                                onClick={() => {
                                     setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
                                     setPercentage(doneTasks.length);
+                                    item.edit = false
+                                    setEdit(false)
                                 }}
-                                style={styleSetDoneButton}
                             >
-                                edit
-                            </button>
+                                Edit
+                            </ActionButton>
                         </td>)
                     : (
-                        <>
-                            <td onClick={() => { setEdit(!toEdit) }} >
+                        <td style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+                            <TaskTitle
+                                id={`${index}-pending`}
+                                style={{ display: "flex", width: "83%", alignItems: "center" }}
+                                onClick={() => {
+                                    if (item.toEdit !== true) {
+                                        setEdit(true);
+                                    }
+                                    if (toEdit === false) {
+                                        setEdit(true);
+                                    };
+                                    item.edit = toEdit;
+                                    setSelected(index);
+                                    console.log(selected);
+                                }}>
                                 {item.value}
-                            </td>
-                            <td style={{ display: "flex" }}>
-                                <button
+                            </TaskTitle>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    height: "100%",
+                                    width: window.innerWidth < 500 ? "fir-content" : "128px"
+                                }}>
+                                <ActionButton
+                                    id="mark-done-button"
+                                    width={window.innerWidth}
                                     onClick={() => {
                                         setDone(!done);
                                         item.status = done ? "Done" : "Pending";
                                         setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
                                         setPercentage(doneTasks.length);
                                     }}
-                                    style={styleSetDoneButton}
                                 >
-                                    Mark as Done
-                                </button>
-                                <button
+                                    {window.innerWidth > 500
+                                        ? "Mark as Done"
+                                        : <StyledImage
+                                            id="done-item"
+                                            alt="do-item-icon"
+                                            height="30px"
+                                        />
+                                    }
+                                </ActionButton>
+                                <ActionButton
+                                    id="delete-button"
                                     onClick={() => {
                                         setDoneTasks(items.filter((tarefa) => (
                                             tarefa.value !== item.value && tarefa.status !== "Pending"))
@@ -174,16 +162,15 @@ export default function Tarefas() {
                                         deleteItem(item.value);
                                         setPercentage(doneTasks.length);
                                     }}
-                                    style={styleActionButton}
                                 >
                                     <StyledImage
                                         id="delete-item"
                                         alt="delete-item"
-                                        height="30px"
+                                        
                                     />
-                                </button>
-                            </td>
-                        </>
+                                </ActionButton>
+                            </div>
+                        </td>
                     )}
             </TRow>
         )
@@ -191,23 +178,22 @@ export default function Tarefas() {
 
     return (
         <DisplayTarefas>
-            <div
-                id="newItemArea"
-                style={styleNewItemArea}>
+            <NewTaskArea>
                 <InputAdd
                     type="text"
                     maxLength={67}
                     onChange={({ target }) => setNewItem(target.value)}
                     value={newItem} placeholder="Add new item" />
-                <button
-                    style={styleAddButton}
+                <AddButton
+                    id="add-task"
+                    width={window.innerWidth}
+                    /* style={styleAddButton} */
                     onClick={() => {
                         createNewItem(newItem);
                         setNewItem("")
                     }}
-                >
-                </button>
-            </div>
+                />
+            </NewTaskArea>
             <Table>
                 <TBody>
                     {filtered.map((item, index) => renderItem(item, index))}
