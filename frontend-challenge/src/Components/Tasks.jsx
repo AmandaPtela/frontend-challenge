@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Table, DisplayTarefas, InputAdd, TBody, TRow, StyledImage, AddButton, ActionButton, NewTaskArea, TaskTitle } from "../Styles/Tasks";
 import { Context } from "../Context/Context";
-import Info from "./Info";
 
 export default function Tarefas() {
 
