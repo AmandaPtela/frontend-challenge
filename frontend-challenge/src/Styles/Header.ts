@@ -5,7 +5,6 @@ export const Calendar = styled.header`
   align-items: center;
   justify-content: space-between;
   color: #848484;
-  font-size: calc(15px + 2vmin);
   height: 160px;
   width: 80%;
 `
@@ -48,7 +47,7 @@ export const DateInfo = styled.div`
    display: flex;
    align-items: start;
    flex-direction: column;
-   line-height: 24px;
+   line-height: 30px;
    letter-spacing: 0;
 `
 
