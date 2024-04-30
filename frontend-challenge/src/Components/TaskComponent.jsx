@@ -48,7 +48,7 @@ export default function Tarefa(data) {
                     <ActionButton
                         id="undo-button"
                         onClick={() => {
-                            /* AJUSTAR ESTADOS P RENDERIZAR CERTO */
+                            /* AJUSTAR ESTADOS P RENDERIZAR CERTo */
                             setDone(!done);
                             item.status = done ? "Done" : "Pending";
                             setDoneTasks(items.filter(({ status }) => status !== "Pending"));
