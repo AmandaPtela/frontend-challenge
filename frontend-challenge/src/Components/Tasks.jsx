@@ -25,18 +25,6 @@ export default function Tarefas() {
         return setPercentage(doneTasks.length);
     };
 
-    //PAREI
-    const infoText = () => {
-        console.log("em cima");
-        return (
-            <div
-                style={{ position: "absolute", height: "20px", top: "50%", left: "50%", backgroundColor: "red" }}
-            >
-                <span>Edit task</span>
-            </div>
-        )
-    }
-
     return (
         <DisplayTarefas>
             <NewTaskArea>
@@ -44,11 +32,11 @@ export default function Tarefas() {
                     type="text"
                     maxLength={67}
                     onChange={({ target }) => setNewItem(target.value)}
-                    value={newItem} placeholder="Add new item" />
+                    value={newItem}
+                    placeholder="Add new item" />
                 <AddButton
                     id="add-task"
                     width={window.innerWidth}
-                    /* style={styleAddButton} */
                     onClick={() => {
                         createNewItem(newItem);
                         setNewItem("")
