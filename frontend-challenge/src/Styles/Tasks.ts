@@ -102,11 +102,17 @@ export const TRow = styled.tr`
     color: #5DE290;
     border: solid 1px #5DE290;
   `}
+
+  ${(props) => props.id?.includes("-selected") && `
+  color: #5DE290;
+  border: solid 1px orange;
+`}
 `
 
 export const TaskTitle = styled.span`
 @media (max-width: 800px) {
   font-size: 14px;
+  width: 70%;
 
   &:hover .info {
     display: none;
@@ -120,6 +126,7 @@ export const TaskTitle = styled.span`
 
 @media (min-width: 800px) {
   font-size: 19px;
+  width: 80%;
 
   ${(props) => props.id?.includes("-done") && `
   text-decoration: line-through;
@@ -203,6 +210,11 @@ export const ActionButton = styled.button<{ width: number}>`
   cursor: pointer;
   z-index: 2;
   font-weight: 400;
+
+  ${(props) => props.id?.includes("dis") && `
+  color: #848484;
+  opacity: 40%
+  `}
     
   ${props => props.id === "mark-done-button" && `
     color: #848484;
@@ -214,8 +226,8 @@ export const ActionButton = styled.button<{ width: number}>`
     color: #FA5252;
   `}
 
-  ${(props) => props.id === "edit" && `
-    color: #848484;
+  ${(props) => props.id === "confirm-edit-button" && `
+    color: #5DE290;
   `}
 }
 
@@ -227,6 +239,11 @@ export const ActionButton = styled.button<{ width: number}>`
   cursor: pointer;
   z-index: 2;
   font-weight: 400;
+
+  ${(props) => props.id?.includes("dis") && `
+  color: #848484;
+  opacity: 40%
+`}
     
   ${props => props.id === "mark-done-button" && `
     color: #848484;
@@ -238,7 +255,7 @@ export const ActionButton = styled.button<{ width: number}>`
     color: #FA5252;
   `}
 
-  ${(props) => props.id === "edit" && `
-    color: #848484;
+  ${(props) => props.id === "confirm-edit-button" && `
+    color: #5DE290;
   `}
 }`
