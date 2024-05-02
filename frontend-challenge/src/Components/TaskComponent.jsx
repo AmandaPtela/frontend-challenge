@@ -1,11 +1,9 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, TBody, TRow, StyledImage, ActionButton, InputAdd, TaskTitle } from "../Styles/Tasks";
+import { TRow, StyledImage, ActionButton, TaskTitle } from "../Styles/Tasks";
 import { Context } from "../Context/Context";
 
 export default function Tarefa(data) {
     const { item, index } = data;
-
-    console.log(item);
 
     const initialItem = {
         value: "",
@@ -13,9 +11,9 @@ export default function Tarefa(data) {
         edit: false
     };
 
-    const { items, setItem, filtered, setFiltered, setDoneTasks, doneTasks, setPercentage } = useContext(Context);
+    const { items, setItem, setFiltered, setDoneTasks, doneTasks, setPercentage } = useContext(Context);
     let [done, setDone] = useState(false);
-    let [toEdit, setEdit] = useState(false);
+    let [toEdit, setEdit] = useState(null);
     let [selected, setSelected] = useState();
 
     useEffect(() => setFiltered(items), [items, setFiltered]);
@@ -26,7 +24,7 @@ export default function Tarefa(data) {
     };
 
     //PAREI
-    const infoText = () => {
+/*     const infoText = () => {
         console.log("em cima");
         return (
             <div
@@ -35,52 +33,92 @@ export default function Tarefa(data) {
                 <span>Edit task</span>
             </div>
         )
-    }
+    } */
 
     return (
-        <TRow key={index} id={done ? `${index}-done` : `${index}-pending`}>
-            <TaskTitle id={done ? `${index}-done` : `${index}-pending`} >
-                {item.value}
-            </TaskTitle>
+        <TRow
+            key={index}
+            id={done
+                ? toEdit ? `${index}-done-selected` : `${index}-done`
+                : toEdit ? `${index}-pending-selected` : `${index}-pending`
+            }
+        >
+            {toEdit
+                ? (
+                    <div style={{ height: "55%", width: "80%" }}>
+                        <input
+                            onChange={({ target }) => item.value = target.value}
+                            style={{ height: "90%", width: "90%", border: "solid 0.1ch orange", borderRadius: "0.2em", outline: "none" }}
+                            type="text"
+                            maxLength={67}
+                        />
+                        <ActionButton
+                            id="confirm-edit-button"
+                            onClick={() => { item.edit = !item.edit; setEdit(item.edit) }}
+                        >
+                            {window.innerWidth > 500
+                                ? "Editar"
+                                : <StyledImage id="undo-item" alt="undo-item-icon" />
+                            }
+                        </ActionButton>
+                    </div>
+                )
+                : (
+                    <TaskTitle
+                        onClick={
+                            () => {
+                                setSelected(item)
+                                item.edit = !item.edit
+                                setEdit(item.edit)
+                            }
+                        }
+                        id={done ? `${index}-done` : `${index}-pending`} >
+                        {item.value}
+                    </TaskTitle>)}
             <td style={{ display: "flex" }}>
                 {done
-                    ?
-                    <ActionButton
-                        id="undo-button"
-                        onClick={() => {
-                            /* AJUSTAR ESTADOS P RENDERIZAR CERTO */
-                            setDone(!done);
-                            item.status = done ? "Done" : "Pending";
-                            setDoneTasks(items.filter(({ status }) => status !== "Pending"));
-                            setPercentage(doneTasks.length);
-                        }}
-                    >
-                        {window.innerWidth > 500
-                            ? "Undo task"
-                            : <StyledImage id="undo-item" alt="undo-item-icon" />
-                        }
-                    </ActionButton>
-                    : <ActionButton
-                        id="mark-done-button"
-                        width={window.innerWidth}
-                        onClick={() => {
-                            setDone(!done);
-                            item.status = done ? "Done" : "Pending";
-                            setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
-                            setPercentage(doneTasks.length);
-                        }}
-                    >
-                        {window.innerWidth > 500
-                            ? "Mark as Done"
-                            : <StyledImage
-                                id="done-item"
-                                alt="do-item-icon"
-                                height="30px"
-                            />
-                        }
-                    </ActionButton>}
+                    ? (
+                        <ActionButton
+                            id="undo-button"
+                            onClick={() => {
+                                setDone(!done);
+                                item.status = done ? "Done" : "Pending";
+                                setDoneTasks(items.filter(({ status }) => status !== "Pending"));
+                                setPercentage(doneTasks.length);
+                            }}
+                        >
+                            {window.innerWidth > 500
+                                ? "Undo task"
+                                : <StyledImage id="undo-item" alt="undo-item-icon" />
+                            }
+                        </ActionButton>
+                    )
+                    : (
+                        <ActionButton
+                            id={toEdit ? "mark-done-button-dis" : "mark-done-button"}
+                            width={window.innerWidth}
+                            disabled={toEdit}
+                            onClick={() => {
+                                setDone(!done);
+                                item.status = done ? "Done" : "Pending";
+                                setDoneTasks(items.filter((tarefas) => tarefas.status === "Done"));
+                                setPercentage(doneTasks.length);
+                            }}
+                        >
+                            {window.innerWidth > 500
+                                ? "Mark as Done"
+                                : <StyledImage
+                                    id="done-item"
+                                    alt="do-item-icon"
+                                    height="30px"
+                                />
+                            }
+                        </ActionButton>
+                    )
+                }
                 <ActionButton
-                    id="delete-button"
+                    id={toEdit ? "delete-button-dis" : "delete-button"}
+                    disabled={toEdit}
                     onClick={() => {
                         setDoneTasks(items.filter((tarefa) => (
                             tarefa.value !== item.value && tarefa.status !== "Pending"))
@@ -95,6 +133,6 @@ export default function Tarefa(data) {
                     />
                 </ActionButton>
             </td>
-        </TRow>
+        </TRow >
     )
 }
